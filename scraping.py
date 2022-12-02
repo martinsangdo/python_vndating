@@ -31,6 +31,7 @@ def upsert_detail(collection, user):
         user['created_time'] = getCurrentTimestamp()
         user['updated_time'] = getCurrentTimestamp()
         collection.insert_one(user)
+        # print('insert', user)
     else:
         record['Picture'] = user['Picture']
         record['LookingFor'] = user['LookingFor']
@@ -38,12 +39,15 @@ def upsert_detail(collection, user):
         record['updated_time'] = getCurrentTimestamp()
 
         collection.update_one({'Id': user['Id']}, {'$set':record})
+        # print('update', record)
+
     return
 
-
 #======
-client = MongoClient('localhost:27017')
-db_client = client['vndating']
+# client = MongoClient('localhost:27017')
+client = MongoClient('mongodb+srv://vndating_aws_user:mqwb69jbcCaA6osI@cluster0.juido.mongodb.net')
+
+db_client = client['vndating_aws']
 collection = db_client['user']
 
 HOST_URI = 'https://henho.top/Home/'
