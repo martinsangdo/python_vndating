@@ -5,7 +5,7 @@ import time
 import sys
 
 def getCurrentTimestamp():
-    return int(calendar.timegm(time.gmtime()) / 1000)
+    return int(calendar.timegm(time.gmtime()))
 
 def upsert_detail(collection, user):
     #find if user is existed
@@ -31,7 +31,7 @@ def upsert_detail(collection, user):
         user['created_time'] = getCurrentTimestamp()
         user['updated_time'] = getCurrentTimestamp()
         collection.insert_one(user)
-        # print('insert', user)
+        # print('=====insert', user)
     else:
         record['Picture'] = user['Picture']
         record['LookingFor'] = user['LookingFor']
@@ -39,7 +39,7 @@ def upsert_detail(collection, user):
         record['updated_time'] = getCurrentTimestamp()
 
         collection.update_one({'Id': user['Id']}, {'$set':record})
-        # print('update', record)
+        # print('=====update', record)
 
     return
 
