@@ -137,17 +137,24 @@ def calculate_correlation(db_collection):
     #
     for record in records:
         nums = record['nums']
-        for x in range(0, 7):
-            if (x+1) < 7:
-                pairs[nums[x]-1][nums[x+1]-1] += 1
-                if pairs[nums[x]-1][nums[x+1]-1] == 1:
-                    date_pairs[nums[x]-1][nums[x+1]-1] = record['index']
+        for x in range(0, 6):
+            for y in range(x+1, 7):
+                pairs[nums[x]-1][nums[y]-1] += 1
+                if pairs[nums[x]-1][nums[y]-1] == 1:
+                    date_pairs[nums[x]-1][nums[y]-1] = record['index']
                 else:
-                    date_pairs[nums[x]-1][nums[x+1]-1] = ''
-    print_pairs(pairs)
+                    date_pairs[nums[x]-1][nums[y]-1] = ''
+    # print_pairs_matrix(pairs)
     # print(date_pairs[53][0])
+    # print_pairs_csv(pairs)
 #######################
-def print_pairs(pairs):
+def print_pairs_csv(pairs):
+    for row in range(0, 55):
+        for col in range(0, 55):
+            if (pairs[row][col] > 0):
+                print("("+str(row+1)+"-"+str(col+1)+")" + "," + str(pairs[row][col]))
+#######################
+def print_pairs_matrix(pairs):
     str_col = ""
     for col in range(0, 55):
         if col < 10:
