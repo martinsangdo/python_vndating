@@ -179,7 +179,7 @@ client = MongoClient('localhost:27017')
 db_client = client['martin_projects']   #database
 db_collection = db_client['vietlott_655']
 
-# parse_data(db_collection)
+parse_data(db_collection)
 # sum_up_statistic(db_collection)
 # sum_up_statistic_posit(db_collection, 1)
-calculate_correlation(db_collection)
+# calculate_correlation(db_collection)
