@@ -44,8 +44,7 @@ def upsert_detail(collection, user):
     return
 
 #======
-# client = MongoClient('localhost:27017')
-client = MongoClient('mongodb+srv://vndating_aws_user:mqwb69jbcCaA6osI@cluster0.juido.mongodb.net')
+client = MongoClient('localhost:27017')
 
 db_client = client['vndating_aws']
 collection = db_client['user']
